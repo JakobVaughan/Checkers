@@ -15,8 +15,43 @@ public class square extends JButton implements ActionListener
     public void main(String[] args)
     {
         System.out.println("hi");
-
+        
+        
+       
+        
     }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+                e.getActionCommand();    
+              //  System.out.println(getRow());
+                //System.out.println(getCol());
+               // moveTo(this);
+               if((pType == "RED" || pType == "WHITE") && pType == board.currentPlayer)
+               {
+                
+                 board.prevSq = this; //remember previously clicked square
+
+               }
+               else if(pType == "YELLOW")
+               {
+
+                    board.prevSq.moveTo(this);  
+                    
+                    if (board.currentPlayer == "WHITE")
+                    {
+                        board.currentPlayer = "RED";
+                    }
+                    else
+                    {
+                        board.currentPlayer = "WHITE";
+                    }
+        
+               }
+
+            }
+
+    
 
     public square(String name, int jRow, int jCol, String image)
     {
@@ -25,8 +60,11 @@ public class square extends JButton implements ActionListener
         col = jCol;
         
         setImage(image);
-  
+        
+        
     }
+
+     
 
     public int getRow()
     {
@@ -53,7 +91,14 @@ public class square extends JButton implements ActionListener
         col = colSet;
     }
 
+    public void moveTo(square destSq)
+    {
+        //System.out.println(destSq.getIcon());
+        
+        destSq.setImage(pType);
+        setImage("NONE");
     
+    }
 
     public void setImage(String colour)
     {

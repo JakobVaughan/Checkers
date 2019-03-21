@@ -26,7 +26,17 @@ public class board
         public static void main(String[] args)
         {
 
+        
+            
+            
+
+            
             panel.setLayout(new GridLayout(8 ,8, 0, 0));
+            
+        
+            
+
+            
 
             String str = "btn";
             int colour = 0;
@@ -39,7 +49,10 @@ public class board
             
                 for(int j=0;j<8;j++)
                     {
- 
+                        
+                       
+                       // button[i][j].setRow(i);
+                        //button[i][j].setCol(j);
                         if(colour==0) //black
                         {
                          //   button[i][j].setIcon(new ImageIcon("empty2.png"));
@@ -54,7 +67,11 @@ public class board
                         }
                         else //white
                         {
-
+                            
+                          //  button[i][j].setIcon(new ImageIcon("empty.png"));
+                            
+                            
+                            
                             if(i==0 || i==1 || i==2)
                                 {
                                     button[i][j] = new square(str+i+j, i, j, "RED");
@@ -78,7 +95,9 @@ public class board
                                 }    
                             
                             button[i][j].addActionListener(button[i][j]);                         
-
+    
+                                            
+                            
                             panel.add(button[i][j]);
                             
                                 
@@ -100,6 +119,10 @@ public class board
 
             }
 
+
+          
+
+            
             window.pack();
             
 
@@ -120,23 +143,6 @@ public class board
             thisSquare.getRow();
         }
 
-    
-
         
-        
-       
-        
-            
-        
-        
-       
-        
-    
-        
-        
-
-
-       
-    
-    
+ 
 }

@@ -1,3 +1,4 @@
+import javax.lang.model.util.ElementScanner6;
 import javax.swing.*;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
@@ -15,9 +16,7 @@ public class square extends JButton implements ActionListener
     {
         System.out.println("hi");
 
-        
     }
-
 
     public square(String name, int jRow, int jCol, String image)
     {
@@ -26,8 +25,65 @@ public class square extends JButton implements ActionListener
         col = jCol;
         
         setImage(image);
-        
-        
+  
+    }
+
+    public int getRow()
+    {
+        return thisRow;
+    }
+
+    public String getImage()
+    {
+        return pType;
+    }
+
+    public int getCol()
+    {
+        return col;
+    }
+
+    public void setRow(int rowSet)
+    {
+        thisRow = rowSet;
+    }
+
+    public void setCol(int colSet)
+    {
+        col = colSet;
+    }
+
+    
+
+    public void setImage(String colour)
+    {
+        pType = colour;
+        if(colour == "RED")
+        {
+            this.setIcon(new ImageIcon("red.png"));
+            
+        }
+        else if(colour == "WHITE")
+        {
+            this.setIcon(new ImageIcon("white.png"));
+        }
+        else if(colour == "BLACK")
+        {
+            this.setIcon(new ImageIcon("empty2.png"));
+
+        }
+        else if(colour == "YELLOW")
+        {
+            this.setIcon(new ImageIcon("selected.png"));
+
+        }
+        else 
+        {
+            this.setIcon(new ImageIcon("empty.png"));
+
+        }
+
+
     }
 
     

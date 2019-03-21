@@ -15,6 +15,7 @@ public class board
 {
         //instance variables for board
         public static square prevSq; //remembers the previously clicked square 
+        public static square pieceToTake;
         public static String currentPlayer = "WHITE"; // tracks the current player - white starts
         private static  JFrame window = new JFrame(); //creates the window for the game
         private static JPanel panel = new JPanel(); // creates the panel which is put onto the window
@@ -117,7 +118,7 @@ public class board
         //finds all the possible legal moves for the player and highlights them in yellow
         public static void showPossible()
         {
-            // goes through all of the button
+            // goes through all of the buttons
             for(int k = 0; k<=7; k++)
             {          
                 for(int l=0; l<=7; l++)
@@ -132,6 +133,30 @@ public class board
 
                         button[k][l].setImage("YELLOW"); //sets the legal destination squares to yellow
                     }
+                    else if(prevSq.getImage() == "RED" && prevSq.canTake(button[k][l]) && prevSq.getRow() < button[k][l].getRow() && prevSq.getCol() < button[k][l].getCol() &&  prevSq.canJumpTo(button[k+1][l+1]))
+                    {
+                        pieceToTake = button[k][l];
+                        button[k+1][l+1].setImage("YELLOW"); //sets the legal destination squares to yellow
+
+                    }
+                    else if(prevSq.getImage() == "RED" && prevSq.canTake(button[k][l]) && prevSq.getRow() < button[k][l].getRow() && prevSq.getCol() > button[k][l].getCol() &&  prevSq.canJumpTo(button[k+1][l-1]))
+                    {
+                        pieceToTake = button[k][l];
+                        button[k+1][l-1].setImage("YELLOW"); //sets the legal destination squares to yellow
+
+                    }
+                    else if(prevSq.getImage() == "WHITE" && prevSq.canTake(button[k][l]) && prevSq.getRow() > button[k][l].getRow() && prevSq.getCol() < button[k][l].getCol() &&  prevSq.canJumpTo(button[k-1][l+1]))
+                    {
+                        pieceToTake = button[k][l];
+                        button[k-1][l+1].setImage("YELLOW"); //sets the legal destination squares to yellow
+
+                    }
+                    else if(prevSq.getImage() == "WHITE" && prevSq.canTake(button[k][l]) && prevSq.getRow() > button[k][l].getRow() && prevSq.getCol() > button[k][l].getCol() &&  prevSq.canJumpTo(button[k-1][l-1]))
+                    {
+                        pieceToTake = button[k][l];
+                        button[k-1][l-1].setImage("YELLOW"); //sets the legal destination squares to yellow
+
+                    }
                 }
             }
             
@@ -139,6 +164,7 @@ public class board
         //Checks through the buttons for any yellow squares and sets them to blank
         public static void clearBoard()
         {
+            pieceToTake = null;
             //runs through all of the buttons
             for(int k = 0; k<=7; k++)
             {          
@@ -154,5 +180,6 @@ public class board
             }
             
         }
+
 
 }

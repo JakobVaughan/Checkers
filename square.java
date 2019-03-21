@@ -35,6 +35,11 @@ public class square extends JButton implements ActionListener // creates a subcl
                {
                     //second click on allowed destination square
                     board.prevSq.moveTo(this);  //runs the move
+
+                    if(board.pieceToTake != null)
+                    {
+                        board.pieceToTake.setImage("NONE");
+                    }
                     board.clearBoard();//clears the board of the yellow squares
                     if (board.currentPlayer == "WHITE") //If it is the white player's turn
                     {
@@ -69,7 +74,51 @@ public class square extends JButton implements ActionListener // creates a subcl
             {
                 canGo = true;
             }
+
+        
         return canGo;
+
+        
+    }
+    //Runs a check to see if the piece can be taken
+    public boolean canTake(square testSq)
+    {
+        boolean take = false;
+        
+        //check to see if there is a piece that can be taken diagonally
+        if(this.pType == "RED" && testSq.getImage() == "WHITE" && testSq.thisRow == (this.thisRow + 1) && (testSq.col == (this.col + 1) || testSq.col == (this.col - 1)))
+            {
+                take = true;
+            }
+        
+        else if(this.pType == "WHITE" && testSq.getImage() == "RED" && testSq.thisRow == (this.thisRow - 1) && (testSq.col == (this.col + 1) || testSq.col == (this.col - 1)))
+            {
+                take = true;
+            }
+
+        
+        return take;
+
+        
+    }
+
+    public boolean canJumpTo(square testSq)
+    {
+        boolean canJump = false;
+        
+        //red pieces can move down one row, white pieces can move up one row, and one column either way
+        if(this.pType == "RED" && testSq.getImage() == "NONE" && testSq.thisRow == (this.thisRow + 2) && (testSq.col == (this.col + 2) || testSq.col == (this.col - 2)))
+            {
+                canJump = true;
+            }
+        
+        else if(this.pType == "WHITE" && testSq.getImage() == "NONE" && testSq.thisRow == (this.thisRow - 2) && (testSq.col == (this.col + 2) || testSq.col == (this.col - 2)))
+            {
+                canJump = true;
+            }
+
+        
+        return canJump;
 
         
     }
